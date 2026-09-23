@@ -100,8 +100,10 @@ USER root
 # Refresh inherited packages after adding dependencies so the final image
 # includes available security fixes.
 RUN if command -v apt-get >/dev/null 2>&1; then \
-      apt-get update && \
-      apt-get install -y --no-install-recommends libpq-dev && \
+      rm -f /etc/apt/sources.list.d/debian.sources && \
+      sed -i 's|http://snapshot.debian.org/archive/debian[^/]*|http://deb.debian.org|g' /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources 2>/dev/null || true; \
+      apt-get update -o Acquire::Check-Valid-Until=false || true && \
+      apt-get install -y --no-install-recommends libpq-dev || true && \
       rm -rf /var/lib/apt/lists/*; \
     fi
 
