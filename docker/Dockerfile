@@ -20,7 +20,7 @@
 # CI passes these via --build-arg; for local builds use:
 #   node scripts/docker-build.mjs          (recommended, reads JSON for you)
 #   docker build --build-arg AGENT_SERVER_IMAGE=... --build-arg AUTOMATION_VERSION=... -f docker/Dockerfile .
-ARG AGENT_SERVER_IMAGE=ghcr.io/openhands/agent-server:1.49.4
+ARG AGENT_SERVER_IMAGE=ghcr.io/openhands/agent-server:1.49.4-python
 ARG AGENT_SERVER_VERSION=1.49.4
 ARG AUTOMATION_VERSION=1.14.0
 
